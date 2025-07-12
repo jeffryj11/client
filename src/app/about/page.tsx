@@ -1,1 +1,8 @@
-export default function About() { return <div style={{padding:'2rem'}}><h1>About</h1><p>This is the about page.</p></div>; }
+export default function AboutPage() {
+  return (
+    <main>
+      <h1>About the Program</h1>
+      <p>Information about the Texas Home Energy Rebates Program.</p>
+    </main>
+  );
+}

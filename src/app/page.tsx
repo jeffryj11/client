@@ -1,8 +1,8 @@
-export default function Home() {
+export default function HomePage() {
   return (
-    <div>
-      <h1>Welcome to the Client Portal</h1>
-      <p>This portal allows you to check application status, apply for services, and contact support.</p>
-    </div>
+    <main className="min-h-screen p-6">
+      <h1 className="text-2xl font-semibold">Welcome to the Client Portal</h1>
+      <p className="mt-2 text-gray-600">Use this portal to apply for rebates and check your status.</p>
+    </main>
   );
 }

@@ -1,50 +1,58 @@
 'use client';
+
 import { useState } from 'react';
+
+const mockApplications = [
+  {
+    confirmationId: 'ABC123',
+    email: 'test@example.com',
+    status: 'Under Review',
+    lastUpdated: '2025-07-11',
+    propertyType: 'Single-Family',
+  }
+];
 
 export default function StatusPage() {
   const [query, setQuery] = useState('');
-  const [result, setResult] = useState<any | null>(null);
-  const [notFound, setNotFound] = useState(false);
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState('');
 
   const handleSearch = () => {
-    setNotFound(false);
-    setResult(null);
-
-    if (query.toLowerCase() === 'abc123' || query.toLowerCase() === 'john@example.com') {
-      setResult({
-        name: 'John Smith',
-        email: 'john@example.com',
-        status: 'Approved',
-        lastUpdated: '2025-07-10',
-      });
+    const found = mockApplications.find(
+      (app) =>
+        app.confirmationId.toLowerCase() === query.toLowerCase() ||
+        app.email.toLowerCase() === query.toLowerCase()
+    );
+    if (found) {
+      setResult(found);
+      setError('');
     } else {
-      setNotFound(true);
+      setResult(null);
+      setError('No application found.');
     }
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '2rem' }}>
-      <h1 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Check Application Status</h1>
-      <label htmlFor="query">Enter your confirmation ID or email address:</label>
-      <div>
-        <input
-          id="query"
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          style={{ padding: '0.5rem', marginRight: '0.5rem', width: '70%' }}
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
+    <main className="min-h-screen p-6 max-w-xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Check Status</h1>
+      <input
+        type="text"
+        placeholder="Enter confirmation ID or email"
+        className="border p-2 w-full mb-2"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <button onClick={handleSearch} className="bg-green-600 text-white px-4 py-2 rounded">
+        Search
+      </button>
+      {error && <p className="text-red-600 mt-2">{error}</p>}
       {result && (
-        <div style={{ marginTop: '1rem' }}>
-          <p><strong>Name:</strong> {result.name}</p>
-          <p><strong>Email:</strong> {result.email}</p>
+        <div className="mt-4 border p-4 bg-white shadow">
           <p><strong>Status:</strong> {result.status}</p>
           <p><strong>Last Updated:</strong> {result.lastUpdated}</p>
+          <p><strong>Property Type:</strong> {result.propertyType}</p>
         </div>
       )}
-      {notFound && <p style={{ color: 'red', marginTop: '1rem' }}>No application found. Please check your confirmation ID or email.</p>}
-    </div>
+    </main>
   );
 }

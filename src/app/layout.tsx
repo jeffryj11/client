@@ -1,17 +1,13 @@
 import './globals.css';
-import Navbar from '../components/Navbar';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-grow container mx-auto p-4">
-          {children}
-        </main>
-        <footer className="bg-gray-100 text-center text-sm text-gray-600 py-4 border-t">
-          &copy; 2025 Client Portal. All rights reserved.
-        </footer>
+      <body>
+        <header className="bg-white shadow px-6 py-4 text-xl font-bold">
+          Client Portal
+        </header>
+        <main className="p-6">{children}</main>
       </body>
     </html>
   );
