@@ -1,78 +1,50 @@
-// TEMP TEST CHANGE
 'use client';
-
 import { useState } from 'react';
-
-const mockApplications = [
-  {
-    confirmationId: 'ABC123',
-    email: 'test@example.com',
-    status: 'Under Review',
-    lastUpdated: '2025-07-11',
-    propertyType: 'Single-Family',
-  },
-  {
-    confirmationId: 'XYZ789',
-    email: 'jane.doe@example.com',
-    status: 'Approved',
-    lastUpdated: '2025-07-08',
-    propertyType: 'Mobile Home',
-  },
-];
 
 export default function StatusPage() {
   const [query, setQuery] = useState('');
   const [result, setResult] = useState<any | null>(null);
-  const [error, setError] = useState('');
+  const [notFound, setNotFound] = useState(false);
 
   const handleSearch = () => {
-    const found = mockApplications.find(
-      (app) =>
-        app.confirmationId.toLowerCase() === query.toLowerCase() ||
-        app.email.toLowerCase() === query.toLowerCase()
-    );
-    if (found) {
-      setResult(found);
-      setError('');
+    setNotFound(false);
+    setResult(null);
+
+    if (query.toLowerCase() === 'abc123' || query.toLowerCase() === 'john@example.com') {
+      setResult({
+        name: 'John Smith',
+        email: 'john@example.com',
+        status: 'Approved',
+        lastUpdated: '2025-07-10',
+      });
     } else {
-      setResult(null);
-      setError('No application found. Please check your confirmation ID or email.');
+      setNotFound(true);
     }
   };
 
   return (
-    <main className="min-h-screen p-6 max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Check Application Status</h1>
-      <p className="mb-2 text-gray-700">Enter your confirmation ID or email address:</p>
-      <div className="flex items-center gap-2 mb-4">
+    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '2rem' }}>
+      <h1 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Check Application Status</h1>
+      <label htmlFor="query">Enter your confirmation ID or email address:</label>
+      <div>
         <input
+          id="query"
           type="text"
-          placeholder="e.g. ABC123 or email@example.com"
-          className="flex-1 p-2 border rounded"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          style={{ padding: '0.5rem', marginRight: '0.5rem', width: '70%' }}
         />
-        <button
-          onClick={handleSearch}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          Search
-        </button>
+        <button onClick={handleSearch}>Search</button>
       </div>
-
-      {error && <p className="text-red-600 mb-4">{error}</p>}
-
       {result && (
-        <div className="border rounded p-4 bg-white shadow">
-          <h2 className="text-xl font-semibold mb-2">Application Found</h2>
+        <div style={{ marginTop: '1rem' }}>
+          <p><strong>Name:</strong> {result.name}</p>
+          <p><strong>Email:</strong> {result.email}</p>
           <p><strong>Status:</strong> {result.status}</p>
           <p><strong>Last Updated:</strong> {result.lastUpdated}</p>
-          <p><strong>Property Type:</strong> {result.propertyType}</p>
-          <p className="mt-2 text-sm text-gray-500">
-            If you need further assistance, please contact support.
-          </p>
         </div>
       )}
-    </main>
+      {notFound && <p style={{ color: 'red', marginTop: '1rem' }}>No application found. Please check your confirmation ID or email.</p>}
+    </div>
   );
 }
