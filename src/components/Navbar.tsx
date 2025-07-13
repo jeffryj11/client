@@ -1,22 +1,16 @@
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-
-const paths = ['/', '/status', '/apply', '/about', '/contact'];
+'use client';
 
 export default function Navbar() {
-  const pathname = usePathname();
-
   return (
-    <nav className="bg-white text-black border-b shadow-sm px-6 py-2 flex gap-6">
-      {paths.map((path) => (
-        <Link
-          key={path}
-          href={path}
-          className={pathname === path ? 'font-bold underline' : ''}
-        >
-          {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
-        </Link>
-      ))}
+    <nav className="bg-white shadow-md px-6 py-4">
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
+        <span className="font-bold text-xl text-gray-900">Client Portal</span>
+        <div className="space-x-6 text-sm font-medium">
+          <a href="/" className="text-gray-700 hover:text-green-600">Home</a>
+          <a href="/apply" className="text-gray-700 hover:text-green-600">Apply</a>
+          <a href="/status" className="text-gray-700 hover:text-green-600">Check Status</a>
+        </div>
+      </div>
     </nav>
   );
 }
