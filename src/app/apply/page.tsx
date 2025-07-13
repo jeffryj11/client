@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 
 export default function ApplyPage() {
-  const [rebates, setRebates] = useState([]);
-  const [utilities, setUtilities] = useState([]);
+  const [rebates, setRebates] = useState<any[]>([]);
+  const [utilities, setUtilities] = useState<any[]>([]);
   const [form, setForm] = useState({
     first_name: '',
     last_name: '',
