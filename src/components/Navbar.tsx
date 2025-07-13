@@ -11,6 +11,8 @@ export default function Navbar() {
           <a href="/" className="text-gray-700 hover:text-green-600">Home</a>
           <a href="/apply" className="text-gray-700 hover:text-green-600">Apply</a>
           <a href="/status" className="text-gray-700 hover:text-green-600">Check Status</a>
+          <a href="/about" className="text-gray-700 hover:text-green-600">About Us</a>
+          <a href="/contact" className="text-gray-700 hover:text-green-600">Contact Us</a>
         </div>
       </div>
     </nav>
