@@ -1,1 +1,1 @@
-// Supabase client setup
+// supabase client placeholder
