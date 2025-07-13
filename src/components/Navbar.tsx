@@ -1,5 +1,4 @@
 'use client';
-
 export default function Navbar() {
   return (
     <nav className="bg-white shadow-md px-6 py-4">
