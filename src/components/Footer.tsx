@@ -1,8 +1,7 @@
-
 export default function Footer() {
   return (
-    <footer className="text-center text-sm text-gray-500 py-4 border-t mt-8">
-      &copy; {new Date().getFullYear()} Texas Home Energy Rebates. All rights reserved.
+    <footer className="bg-gray-100 text-center text-sm text-gray-500 p-4 mt-8">
+      © {new Date().getFullYear()} OdisCom – All rights reserved.
     </footer>
   );
 }
