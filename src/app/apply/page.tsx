@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 
@@ -26,11 +26,11 @@ export default function ApplyPage() {
     loadData();
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const { error } = await supabase.from('applications').insert([{
       first_name: form.first_name,
