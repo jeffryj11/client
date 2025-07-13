@@ -1,11 +1,16 @@
-import './globals.css';
-
-import { ReactNode } from 'react';
+import './globals.css'
+import { ReactNode } from 'react'
+import Navbar from '../components/Navbar' // ✅ Make sure this path is correct
+import Footer from '../components/Footer'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gray-100 text-gray-900">{children}</body>
+      <body>
+        <Navbar /> {/* ✅ Should be here */}
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
-  );
+  )
 }
