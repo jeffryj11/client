@@ -1,19 +1,21 @@
 'use client';
 export default function Navbar() {
   return (
-    <nav className="bg-white shadow-md px-6 py-4">
-      <div className="max-w-6xl mx-auto flex justify-between items-center">
-        <span className="font-bold text-xl text-gray-900">
-          Texas Home Energy Rebates – Client Portal
-        </span>
-        <div className="space-x-6 text-sm font-medium">
-          <a href="/" className="text-gray-700 hover:text-green-600">Home</a>
-          <a href="/apply" className="text-gray-700 hover:text-green-600">Apply</a>
-          <a href="/status" className="text-gray-700 hover:text-green-600">Check Status</a>
-          <a href="/about" className="text-gray-700 hover:text-green-600">About Us</a>
-          <a href="/contact" className="text-gray-700 hover:text-green-600">Contact Us</a>
-        </div>
+    <>
+      <div className="bg-gray-50 text-gray-800 text-center py-2 text-sm font-semibold border-b">
+        Texas Home Energy Rebates – Client Portal
       </div>
-    </nav>
+      <nav className="bg-white shadow px-4 py-3">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center sm:justify-between space-y-2 sm:space-y-0 text-sm font-medium">
+          <div className="space-x-6">
+            <a href="/" className="text-gray-700 hover:text-green-600">Home</a>
+            <a href="/apply" className="text-gray-700 hover:text-green-600">Apply</a>
+            <a href="/status" className="text-gray-700 hover:text-green-600">Check Status</a>
+            <a href="/about" className="text-gray-700 hover:text-green-600">About Us</a>
+            <a href="/contact" className="text-gray-700 hover:text-green-600">Contact Us</a>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 }
